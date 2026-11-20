@@ -1,0 +1,8 @@
+# Cada módulo tiene un responsable. Reemplaza los usuarios por los de tu equipo.
+# Con la regla de rama "Require review from Code Owners", los cambios a un módulo
+# ajeno necesitan la aprobación de su dueño.
+/mod_qr/          @usuario-responsable-qr
+/mod_camara/      @usuario-responsable-camara
+/mod_impresion/   @usuario-responsable-impresion
+/mod_analisis/    @usuario-responsable-analisis
+/nucleo/          @usuario-responsable-qr @usuario-responsable-camara @usuario-responsable-impresion

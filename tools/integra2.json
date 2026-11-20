@@ -1,0 +1,314 @@
+{
+  "ciclo": "2027-1",
+  "git": {
+    "horas_retrofechado": 36,
+    "gracia_cierre_horas": 3,
+    "min_caracteres_mensaje": 12,
+    "min_lineas": 5,
+    "lineas_commit_masivo": 1500,
+    "mensajes_genericos": [
+      "update",
+      "updates",
+      "updated",
+      "cambios",
+      "cambio",
+      "commit",
+      "fix",
+      "arreglo",
+      "avance",
+      "wip",
+      "test",
+      "prueba",
+      "asdf",
+      "subida",
+      "upload",
+      "files",
+      "archivos",
+      "first commit",
+      "initial commit",
+      "add files via upload",
+      "update readme.md",
+      "readme",
+      "listo",
+      "final",
+      "."
+    ],
+    "excluir_lineas": [
+      "package-lock.json",
+      "yarn.lock",
+      "pnpm-lock.yaml",
+      "poetry.lock",
+      "Pipfile.lock",
+      "/migrations/",
+      ".min.js",
+      ".min.css",
+      "staticfiles/",
+      "node_modules/",
+      ".venv/"
+    ],
+    "carpetas_evidencia": [
+      "evidencias/",
+      "docs/",
+      "data/"
+    ]
+  },
+  "unidades": [
+    {
+      "numero": 1,
+      "nombre": "Introducción al desarrollo de proyectos de investigación y planteamiento del problema",
+      "inicio": "2027-01-11T00:00:00-07:00",
+      "cierre": "2027-01-17T23:59:59-07:00",
+      "zona_roja_horas": 24,
+      "min_dias": 3,
+      "evidencias": [
+        {
+          "clave": "foto_equipo",
+          "archivo": "evidencias/u1/foto_equipo.jpg",
+          "tipo": "foto",
+          "titulo": "Equipo completo",
+          "descripcion": "Todos los integrantes con la tarjeta de evidencia U1."
+        },
+        {
+          "clave": "foto_dispositivos",
+          "archivo": "evidencias/u1/foto_dispositivos.jpg",
+          "tipo": "foto",
+          "titulo": "Dispositivos del proyecto",
+          "descripcion": "Lector QR, cámara e impresora que usará el equipo, junto a la tarjeta U1."
+        },
+        {
+          "clave": "captura_tidb",
+          "archivo": "evidencias/u1/captura_tidb.png",
+          "tipo": "captura",
+          "titulo": "Clúster en TiDB Cloud",
+          "descripcion": "Clúster creado y base de datos del proyecto (sin mostrar contraseñas)."
+        },
+        {
+          "clave": "captura_render",
+          "archivo": "evidencias/u1/captura_render.png",
+          "tipo": "captura",
+          "titulo": "Servicio en Render",
+          "descripcion": "Despliegue exitoso (Deploy live) del servicio web."
+        },
+        {
+          "clave": "captura_sitio",
+          "archivo": "evidencias/u1/captura_sitio.png",
+          "tipo": "captura",
+          "titulo": "Sitio publicado",
+          "descripcion": "Página inicial con el título, propósito y justificación de la investigación."
+        }
+      ],
+      "entregables": [
+        {
+          "archivo": "docs/u1/informe_u1.pdf",
+          "titulo": "Informe de la Unidad 1",
+          "min_kb": 30
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "nombre": "Diseño y Metodología del proyecto de investigación",
+      "inicio": "2027-01-18T00:00:00-07:00",
+      "cierre": "2027-01-31T23:59:59-07:00",
+      "zona_roja_horas": 48,
+      "min_dias": 5,
+      "evidencias": [
+        {
+          "clave": "foto_visita",
+          "archivo": "evidencias/u2/foto_visita.jpg",
+          "tipo": "foto",
+          "titulo": "Visita o entrevista",
+          "descripcion": "Visita o entrevista con la organización de la problemática, con la tarjeta U2."
+        },
+        {
+          "clave": "foto_lector_qr",
+          "archivo": "evidencias/u2/foto_lector_qr.jpg",
+          "tipo": "foto",
+          "titulo": "Lector QR funcionando",
+          "descripcion": "Lector QR (USB o cámara) leyendo una etiqueta del sistema, con la tarjeta U2."
+        },
+        {
+          "clave": "captura_er",
+          "archivo": "evidencias/u2/captura_er.png",
+          "tipo": "captura",
+          "titulo": "Diagrama entidad-relación",
+          "descripcion": "Modelo de datos de las variables de la investigación."
+        },
+        {
+          "clave": "captura_admin",
+          "archivo": "evidencias/u2/captura_admin.png",
+          "tipo": "captura",
+          "titulo": "Panel de administración",
+          "descripcion": "Admin de Django en Render con los modelos migrados en TiDB Cloud."
+        },
+        {
+          "clave": "captura_escaneos",
+          "archivo": "evidencias/u2/captura_escaneos.png",
+          "tipo": "captura",
+          "titulo": "Escaneos registrados",
+          "descripcion": "Listado de lecturas QR guardadas en la base de datos."
+        },
+        {
+          "clave": "captura_aviso",
+          "archivo": "evidencias/u2/captura_aviso.png",
+          "tipo": "captura",
+          "titulo": "Aviso de privacidad",
+          "descripcion": "Aviso de privacidad publicado en la aplicación."
+        }
+      ],
+      "entregables": [
+        {
+          "archivo": "docs/u2/informe_u2.pdf",
+          "titulo": "Informe de la Unidad 2",
+          "min_kb": 40
+        },
+        {
+          "archivo": "docs/u2/diagrama_er.pdf",
+          "titulo": "Diagrama entidad-relación (PDF)",
+          "min_kb": 15
+        },
+        {
+          "archivo": "docs/u2/instrumento.pdf",
+          "titulo": "Borrador del instrumento de recolección",
+          "min_kb": 15
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "nombre": "Recopilación, análisis e interpretación de datos",
+      "inicio": "2027-02-01T00:00:00-07:00",
+      "cierre": "2027-02-21T23:59:59-07:00",
+      "zona_roja_horas": 48,
+      "min_dias": 7,
+      "evidencias": [
+        {
+          "clave": "foto_camara",
+          "archivo": "evidencias/u3/foto_camara.jpg",
+          "tipo": "foto",
+          "titulo": "Cámara capturando",
+          "descripcion": "La cámara del sistema tomando la foto de un registro, con la tarjeta U3."
+        },
+        {
+          "clave": "foto_impresora",
+          "archivo": "evidencias/u3/foto_impresora.jpg",
+          "tipo": "foto",
+          "titulo": "Impresora en uso",
+          "descripcion": "La impresora imprimiendo una etiqueta o ticket con QR, con la tarjeta U3."
+        },
+        {
+          "clave": "foto_etiqueta",
+          "archivo": "evidencias/u3/foto_etiqueta.jpg",
+          "tipo": "foto",
+          "titulo": "Etiqueta escaneada",
+          "descripcion": "Etiqueta impresa siendo leída por el lector QR, con la tarjeta U3."
+        },
+        {
+          "clave": "foto_campo",
+          "archivo": "evidencias/u3/foto_campo.jpg",
+          "tipo": "foto",
+          "titulo": "Recolección en campo",
+          "descripcion": "Aplicación del instrumento o uso real del sistema con la población, con la tarjeta U3."
+        },
+        {
+          "clave": "captura_registro_foto",
+          "archivo": "evidencias/u3/captura_registro_foto.png",
+          "tipo": "captura",
+          "titulo": "Registro con foto",
+          "descripcion": "Registro con la foto tomada por la cámara y su marca de agua."
+        },
+        {
+          "clave": "captura_encuesta",
+          "archivo": "evidencias/u3/captura_encuesta.png",
+          "tipo": "captura",
+          "titulo": "Instrumento publicado",
+          "descripcion": "Encuesta o instrumento de recolección en la app."
+        },
+        {
+          "clave": "captura_tablero",
+          "archivo": "evidencias/u3/captura_tablero.png",
+          "tipo": "captura",
+          "titulo": "Tablero de resultados",
+          "descripcion": "Gráficas de los datos recopilados."
+        }
+      ],
+      "entregables": [
+        {
+          "archivo": "docs/u3/informe_u3.pdf",
+          "titulo": "Informe de la Unidad 3",
+          "min_kb": 50
+        },
+        {
+          "archivo": "docs/u3/prueba_piloto.pdf",
+          "titulo": "Reporte de la prueba piloto del instrumento",
+          "min_kb": 15
+        },
+        {
+          "archivo": "data/u3/datos_anonimizados.csv",
+          "titulo": "Datos recopilados (anonimizados)",
+          "min_kb": 2
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "nombre": "Elaboración de informe final, presentación y divulgación",
+      "inicio": "2027-02-22T00:00:00-07:00",
+      "cierre": "2027-03-01T23:59:59-07:00",
+      "zona_roja_horas": 24,
+      "min_dias": 3,
+      "evidencias": [
+        {
+          "clave": "foto_cartel",
+          "archivo": "evidencias/u4/foto_cartel.jpg",
+          "tipo": "foto",
+          "titulo": "Cartel impreso",
+          "descripcion": "El cartel impreso con la tarjeta U4."
+        },
+        {
+          "clave": "foto_ensayo",
+          "archivo": "evidencias/u4/foto_ensayo.jpg",
+          "tipo": "foto",
+          "titulo": "Ensayo de la presentación",
+          "descripcion": "El equipo ensayando la presentación con la tarjeta U4."
+        },
+        {
+          "clave": "captura_micrositio",
+          "archivo": "evidencias/u4/captura_micrositio.png",
+          "tipo": "captura",
+          "titulo": "Micrositio de divulgación",
+          "descripcion": "Página /divulgacion/ publicada en Render."
+        },
+        {
+          "clave": "captura_release",
+          "archivo": "evidencias/u4/captura_release.png",
+          "tipo": "captura",
+          "titulo": "Release v1.0",
+          "descripcion": "Release v1.0 publicado en GitHub."
+        }
+      ],
+      "entregables": [
+        {
+          "archivo": "docs/u4/informe_final.pdf",
+          "titulo": "Informe final de investigación",
+          "min_kb": 80
+        },
+        {
+          "archivo": "docs/u4/cartel.pdf",
+          "titulo": "Cartel",
+          "min_kb": 50
+        },
+        {
+          "archivo": "docs/u4/articulo.pdf",
+          "titulo": "Propuesta de artículo",
+          "min_kb": 40
+        },
+        {
+          "archivo": "tag:v1.0",
+          "titulo": "Etiqueta (tag) v1.0 en el repositorio",
+          "min_kb": 0
+        }
+      ]
+    }
+  ]
+}

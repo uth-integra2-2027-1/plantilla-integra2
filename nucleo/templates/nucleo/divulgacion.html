@@ -1,0 +1,21 @@
+{% extends "nucleo/base.html" %}
+{% block titulo %}Divulgación{% endblock %}
+{% block head %}<meta name="integra2" content="integra2-divulgacion">{% endblock %}
+{% block contenido %}
+<!-- integra2-divulgacion : no borres esta marca, Integra2 la busca en la Unidad 4 -->
+<div class="card">
+  <h1>Resultados de la investigación (EDITAR en la Unidad 4)</h1>
+  <p><b>Resumen:</b> …</p>
+  <p><a class="btn" href="https://github.com/">Cartel (PDF)</a> <a class="btn" href="https://github.com/">Artículo (PDF)</a></p>
+  <h2>Hallazgos principales</h2><ul><li>…</li></ul>
+  <h2>Tablero en vivo</h2>
+  <canvas id="g" height="110"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script>
+fetch("{% url 'api_tablero' %}").then(r => r.json()).then(d => {
+  new Chart(document.getElementById("g"), {type: "bar", data: {labels: d.dias, datasets: [
+    {label: "Lecturas QR", data: d.series.qr}, {label: "Fotos", data: d.series.foto}, {label: "Impresiones", data: d.series.impresion}]}});
+});
+</script>
+{% endblock %}

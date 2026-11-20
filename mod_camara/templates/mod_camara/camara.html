@@ -1,0 +1,36 @@
+{% extends "nucleo/base.html" %}
+{% block titulo %}Cámara{% endblock %}
+{% block contenido %}
+<div class="grid">
+  <div class="card"><h2>Tomar foto de un registro</h2>
+    <video id="v" autoplay playsinline style="width:100%;border-radius:8px;background:#000"></video>
+    <p><input id="folio" placeholder="Folio del elemento (opcional, puedes escanearlo)"></p>
+    <button class="btn" id="iniciar">Encender cámara</button> <button class="btn v" id="tomar">Tomar y guardar</button>
+    <div id="res" style="margin-top:8px"></div>
+    <canvas id="c" style="display:none"></canvas></div>
+  <div class="card"><h2>Fotos recientes</h2>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr)">{% for f in fotos %}<a href="{% url 'foto' f.pk %}" target="_blank"><img src="{% url 'foto' f.pk %}" style="width:100%;border-radius:6px" alt="Foto {{ f.pk }}"></a>{% endfor %}</div></div>
+</div>
+<script>
+const v = document.getElementById("v"), c = document.getElementById("c");
+document.getElementById("iniciar").onclick = async () => {
+  v.srcObject = await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment", width:{ideal:1280}}, audio:false});
+};
+document.getElementById("tomar").onclick = () => {
+  const w = Math.min(1280, v.videoWidth), h = Math.round(v.videoHeight * w / v.videoWidth);
+  c.width = w; c.height = h;
+  const ctx = c.getContext("2d"); ctx.drawImage(v, 0, 0, w, h);
+  // Marca de agua: equipo + folio + fecha (evidencia de que la foto salió del sistema)
+  const marca = `Equipo {{ EQUIPO }} · ${document.getElementById("folio").value || "sin folio"} · ${new Date().toLocaleString("es-MX")}`;
+  ctx.fillStyle = "rgba(0,0,0,.55)"; ctx.fillRect(0, h - 34, w, 34);
+  ctx.fillStyle = "#fff"; ctx.font = "18px Arial"; ctx.fillText(marca, 10, h - 11);
+  c.toBlob(async blob => {
+    const fd = new FormData(); fd.append("foto", blob, "foto.jpg"); fd.append("folio", document.getElementById("folio").value);
+    fd.append("ancho", w); fd.append("alto", h);
+    const r = await fetch("{% url 'api_foto' %}", {method:"POST", body:fd, headers:{"X-CSRFToken":"{{ csrf_token }}"}});
+    const d = await r.json();
+    document.getElementById("res").innerHTML = `<div class="${d.ok ? "ok" : "err"}">${d.ok ? "Foto guardada en TiDB Cloud (#" + d.id + ")" : d.error}</div>`;
+  }, "image/jpeg", 0.75);
+};
+</script>
+{% endblock %}

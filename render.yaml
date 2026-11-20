@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: integra2-equipo   # cambia por el nombre de tu equipo
+    runtime: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: gunicorn proyecto.wsgi:application --workers 2 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DEBUG
+        value: "0"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL       # TiDB Cloud: mysql://USUARIO:CLAVE@HOST:4000/NOMBRE_BD
+        sync: false
+      - key: INTEGRA2_EQUIPO    # código del equipo (portal Integra2)
+        sync: false
+      - key: INTEGRA2_CLAVE     # clave secreta del equipo (portal Integra2) — NUNCA en GitHub
+        sync: false
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false

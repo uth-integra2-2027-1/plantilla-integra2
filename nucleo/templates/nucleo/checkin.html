@@ -1,0 +1,27 @@
+{% extends "nucleo/base.html" %}
+{% block titulo %}Check-in Integra2{% endblock %}
+{% block head %}<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>{% endblock %}
+{% block contenido %}
+<div class="card" style="max-width:640px">
+  <h1>Check-in en clase</h1>
+  <p class="muted">Escanea el QR que proyecta el docente (cambia cada 20 s). Cada integrante registra su matrícula.</p>
+  <label>Matrícula</label><input id="mat" placeholder="Tu matrícula">
+  <p><label>Lector USB</label><input id="usb" placeholder="Enfoca aquí y escanea"></p>
+  <div id="lector"></div><p><button class="btn" id="cam">Usar cámara</button></p>
+  <div id="res"></div>
+</div>
+<script>
+let enviando = false;
+async function enviar(token, origen){
+  if(enviando) return; enviando = true;
+  const r = await fetch("", {method:"POST", headers:{"Content-Type":"application/json","X-CSRFToken":"{{ csrf_token }}"},
+    body: JSON.stringify({token: token.trim(), matricula: document.getElementById("mat").value, origen})});
+  const d = await r.json();
+  document.getElementById("res").innerHTML = `<div class="${d.ok ? "ok" : "err"}">${d.ok ? "Check-in registrado: " + d.alumno : d.error}</div>`;
+  setTimeout(()=>enviando=false, 3000);
+}
+const usb = document.getElementById("usb");
+usb.addEventListener("keydown", e => { if(e.key === "Enter"){ enviar(usb.value, "usb"); usb.value=""; } });
+document.getElementById("cam").onclick = () => new Html5Qrcode("lector").start({facingMode:"environment"}, {fps:10, qrbox:260}, t => enviar(t, "camara"));
+</script>
+{% endblock %}

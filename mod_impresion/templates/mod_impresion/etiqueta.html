@@ -1,0 +1,28 @@
+{% extends "nucleo/base.html" %}
+{% block titulo %}Etiqueta {{ e.folio }}{% endblock %}
+{% block head %}<style>
+.etq{width:58mm;padding:3mm;border:1px dashed #999;background:#fff;text-align:center;font-family:Arial,sans-serif}
+.etq svg{width:44mm;height:44mm}.etq b{display:block;font-size:14pt}.etq small{font-size:7pt;word-break:break-all}
+@media print{@page{size:58mm auto;margin:0}.etq{border:0}}
+</style>{% endblock %}
+{% block contenido %}
+<div class="etq">
+  {{ svg|safe }}
+  <b>{{ e.folio }}</b>
+  <div>{{ e.nombre }}</div>
+  <small>Equipo {{ EQUIPO }} · {% now "d/m/Y H:i" %}</small>
+</div>
+<p class="no-print"><button class="btn v" id="imp">Imprimir etiqueta</button>
+  <span class="muted">Formato para impresora térmica de 58 mm (también funciona en hoja carta).</span></p>
+<script>
+// Se registra la impresión cuando el diálogo de impresión termina
+let registrado = false;
+function registrar(){
+  if(registrado) return; registrado = true;
+  fetch("{% url 'api_impresion' %}", {method:"POST", headers:{"Content-Type":"application/json","X-CSRFToken":"{{ csrf_token }}"},
+    body: JSON.stringify({tipo:"impresion", dato:"{{ texto|escapejs }}", origen:"navegador"})});
+}
+document.getElementById("imp").onclick = () => window.print();
+window.addEventListener("afterprint", registrar);
+</script>
+{% endblock %}

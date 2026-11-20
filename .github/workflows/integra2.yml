@@ -1,0 +1,29 @@
+# Revisión automática en cada push: pruebas de Django y pre-revisión de evidencias.
+# Revisa los resultados en la pestaña "Actions" del repositorio.
+name: Integra2 · revisión
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Pruebas de Django (estado.json y modelos)
+        env:
+          DEBUG: "1"
+          INTEGRA2_EQUIPO: PRUEBA
+          INTEGRA2_CLAVE: clave-de-prueba
+        run: |
+          python manage.py check
+          python manage.py test
+      - name: Pre-revisión de evidencias (no califica, sólo avisa)
+        run: python tools/verificar_evidencias.py
+

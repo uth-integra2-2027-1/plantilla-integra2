@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}Proyecto{% endblock %} · Equipo {{ EQUIPO }}</title>
+<style>
+:root{--p:#1f5f99;--p2:#3f7d20;--f:#f5f7fa;--b:#d8dee6;--t:#1b2430}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--f);color:var(--t);line-height:1.5}
+header{background:var(--p);color:#fff}header .in{max-width:1100px;margin:auto;padding:12px 16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+header a{color:#fff;text-decoration:none;font-size:.92rem}header b{font-size:1.1rem;margin-right:auto}
+main{max-width:1100px;margin:auto;padding:20px 16px 50px}
+.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:18px;margin-bottom:14px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.btn{background:var(--p);color:#fff;border:0;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.v{background:var(--p2)}input,select,textarea{font:inherit;padding:8px;border:1px solid var(--b);border-radius:8px;width:100%}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:7px;border-bottom:1px solid var(--b);text-align:left}
+.ok{background:#eaf4e2;border:1px solid #c5dfb3;padding:10px;border-radius:8px}.err{background:#fdecea;border:1px solid #f3c4bf;padding:10px;border-radius:8px}
+.muted{color:#5b6675;font-size:.9rem}
+@media print{header,.no-print{display:none!important}main{padding:0}body{background:#fff}}
+</style>{% block head %}{% endblock %}</head>
+<body><header><div class="in"><b>{% block marca %}Mi proyecto{% endblock %}</b>
+<a href="{% url 'inicio' %}">Inicio</a><a href="{% url 'encuesta' %}">Encuesta</a><a href="{% url 'divulgacion' %}">Divulgación</a>
+{% if user.is_authenticated %}<a href="{% url 'elementos' %}">Elementos</a><a href="{% url 'escanear' %}">Escanear QR</a><a href="{% url 'camara' %}">Cámara</a><a href="{% url 'tablero' %}">Tablero</a><a href="{% url 'checkin' %}">Check-in</a>{% else %}<a href="/admin/login/?next=/elementos/">Entrar</a>{% endif %}
+<a href="{% url 'aviso' %}">Aviso de privacidad</a></div></header>
+<main>{% for m in messages %}<div class="ok">{{ m }}</div>{% endfor %}{% block contenido %}{% endblock %}</main>
+</body></html>

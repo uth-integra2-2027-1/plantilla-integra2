@@ -1,0 +1,30 @@
+{% extends "nucleo/base.html" %}
+{% block titulo %}Escanear QR{% endblock %}
+{% block head %}<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>{% endblock %}
+{% block contenido %}
+<div class="grid">
+  <div class="card"><h2>Lector QR USB</h2>
+    <p class="muted">Haz clic en el campo y escanea. El lector USB escribe el texto y presiona Enter.</p>
+    <input id="usb" autofocus autocomplete="off" placeholder="Esperando lectura…">
+    <div id="res" style="margin-top:10px"></div></div>
+  <div class="card"><h2>Cámara como lector</h2><div id="lector"></div>
+    <button class="btn" id="cam">Iniciar cámara</button></div>
+</div>
+<div class="card"><h2>Últimas lecturas</h2>
+  <table>{% for e in recientes %}<tr><td>{{ e.creado|date:"d/m H:i:s" }}</td><td>{{ e.dato|truncatechars:50 }}</td><td>{{ e.origen }}</td><td>{{ e.duracion_ms|default:"" }} ms</td></tr>{% endfor %}</table></div>
+<script>
+// duracion_ms: tiempo desde que el campo quedó listo hasta la lectura (variable de la investigación)
+let inicio = performance.now(), ultimo = "";
+async function enviar(texto, origen){
+  texto = texto.trim(); if(!texto || texto === ultimo) return; ultimo = texto; setTimeout(()=>ultimo="", 2500);
+  const r = await fetch("{% url 'api_qr' %}", {method:"POST", headers:{"Content-Type":"application/json","X-CSRFToken":"{{ csrf_token }}"},
+    body: JSON.stringify({tipo:"qr", dato:texto, origen, duracion_ms: Math.round(performance.now()-inicio)})});
+  const d = await r.json();
+  document.getElementById("res").innerHTML = `<div class="${d.ok ? "ok" : "err"}">${d.ok ? "Registrado" : d.error}${d.elemento ? " · " + d.elemento : ""}</div>`;
+  inicio = performance.now();
+}
+const usb = document.getElementById("usb");
+usb.addEventListener("keydown", e => { if(e.key === "Enter"){ enviar(usb.value, "usb"); usb.value = ""; } });
+document.getElementById("cam").onclick = () => new Html5Qrcode("lector").start({facingMode:"environment"}, {fps:10, qrbox:240}, t => enviar(t, "camara"));
+</script>
+{% endblock %}
