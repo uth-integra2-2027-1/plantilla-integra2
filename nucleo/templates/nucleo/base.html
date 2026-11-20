@@ -11,6 +11,9 @@ main{max-width:1100px;margin:auto;padding:20px 16px 50px}
 .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .btn{background:var(--p);color:#fff;border:0;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
 .btn.v{background:var(--p2)}input,select,textarea{font:inherit;padding:8px;border:1px solid var(--b);border-radius:8px;width:100%}
+input[type=radio],input[type=checkbox]{width:auto;padding:0;margin:0 6px 0 0;accent-color:var(--p)}
+form div[id^=id_]:has(input[type=radio]){display:flex;gap:18px;flex-wrap:wrap;margin:4px 0 10px}
+form div[id^=id_] label{display:flex;align-items:center;font-weight:400}
 table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:7px;border-bottom:1px solid var(--b);text-align:left}
 .ok{background:#eaf4e2;border:1px solid #c5dfb3;padding:10px;border-radius:8px}.err{background:#fdecea;border:1px solid #f3c4bf;padding:10px;border-radius:8px}
 .muted{color:#5b6675;font-size:.9rem}
