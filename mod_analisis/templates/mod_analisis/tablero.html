@@ -13,8 +13,8 @@ fetch("{% url 'api_tablero' %}").then(r => r.json()).then(d => {
   new Chart(document.getElementById("g1"), {type:"line", data:{labels:d.dias, datasets:[
     {label:"Lecturas QR", data:d.series.qr}, {label:"Fotos", data:d.series.foto}, {label:"Impresiones", data:d.series.impresion}]}});
   const e = d.encuesta;
-  new Chart(document.getElementById("g2"), {type:"bar", data:{labels:["Facilidad","Rapidez","Confianza"],
-    datasets:[{label:"Promedio", data:[e.facilidad, e.rapidez, e.confianza]}]}, options:{scales:{y:{min:0, max:5}}}});
+  new Chart(document.getElementById("g2"), {type:"bar", data:{labels:["Facilidad","Rapidez"],
+    datasets:[{label:"Promedio", data:[e.facilidad, e.rapidez]}]}, options:{scales:{y:{min:0, max:5}}}});
   document.getElementById("n").textContent = `${e.n} respuestas`;
   const t = d.tiempo_qr_ms;
   document.getElementById("t").textContent = t.prom ? `${(t.prom/1000).toFixed(2)} s (n = ${t.n})` : "Sin datos";
